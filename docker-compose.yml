@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+    wdgdb:
+        container_name: wdgdatabase
+        build: ./core
+        ports:
+            - ${DB_PORT}:5432
+        volumes:
+            - ./wdgdb:/var/lib/wdgdb/data
+        environment:
+            - POSTGRES_DB=wdgdb
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+
+volumes:
+    wdgdb:
+        external: true
